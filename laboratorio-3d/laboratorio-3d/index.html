@@ -1,0 +1,68 @@
+<title>Laboratorio químico 3D</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/lab.css">
+
+<canvas id="scene" tabindex="0" aria-label="Escena 3D del laboratorio"></canvas>
+
+<header class="hdr">
+  <div class="brand">
+    <h1>Laboratorio químico 3D</h1>
+    <p>Mezcla reactivos, valora y observa las reacciones</p>
+  </div>
+  <div class="btns">
+    <button id="toggleExp" aria-controls="drawer">Experimentos</button>
+    <button id="resetLab">Reiniciar</button>
+  </div>
+</header>
+
+<section id="hud" class="panel" aria-live="polite">
+  <h2>Recipiente activo</h2>
+  <p id="vName" class="vname">Ningún recipiente activo</p>
+  <div class="stats">
+    <div><span>Volumen</span><b id="vVol">—</b></div>
+    <div><span>pH</span><b id="vPh">—</b></div>
+    <div><span>Temp.</span><b id="vTemp">—</b></div>
+  </div>
+  <div class="row">
+    <span id="vSwatch" class="swatch"></span>
+    <span id="vSolids" class="muted">—</span>
+  </div>
+  <h3>Registro</h3>
+  <ul id="log" class="log"></ul>
+</section>
+
+<div id="bar" class="panel">
+  <div class="grp" role="group" aria-label="Cantidad por clic">
+    <span class="lbl">Volumen</span>
+    <button data-vol="1" aria-pressed="false">1 mL</button>
+    <button data-vol="5" aria-pressed="true">5 mL</button>
+    <button data-vol="20" aria-pressed="false">20 mL</button>
+  </div>
+  <div class="grp">
+    <span class="lbl">Bureta</span>
+    <b id="burLeft">50.0 mL</b>
+    <button id="refill">Rellenar</button>
+  </div>
+  <div class="grp">
+    <span class="lbl">Mechero</span>
+    <b id="burnerState">Apagado</b>
+  </div>
+  <p class="hint">Arrastra para mirar · WASD o flechas para caminar · clic en el suelo para ir · clic en objetos para usarlos</p>
+</div>
+
+<div id="tip" class="tip" hidden></div>
+
+<aside id="drawer" class="panel" aria-label="Experimentos guiados">
+  <div class="dhead">
+    <h2>Experimentos guiados</h2>
+    <button id="closeExp">Cerrar</button>
+  </div>
+  <div id="expList"></div>
+  <p class="note">Modelo simplificado para ácidos y bases fuertes, precipitados y gases. No sustituye la práctica de laboratorio.</p>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/chem.js"></script>
+<script src="js/world.js"></script>
+<script src="js/controls.js"></script>
